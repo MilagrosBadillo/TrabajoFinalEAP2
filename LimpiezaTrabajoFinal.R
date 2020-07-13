@@ -1,4 +1,5 @@
-#LIMPIEZA DE DATA SOBRE DESIGUALDAD Y POBREZA
+#DESIGUALDAD Y POBREZA
+#Data extraida de https://databank.bancomundial.org/Poverty-and-GINI/id/b49513bf#advancedDownloadOptions
 
 #librerias
 library(rio)
@@ -6,7 +7,7 @@ library(htmltab)
 library(stringr)
 
 #IMPORTAR DATA HOJA POR HOJA
-#se importa la data por hojas pues cada hoja trabaja un indicador diferente y es inviable hacer un merge entre las 3, dado que cada indicador es observado en un periodo de varios años
+#se importa la data por hojas pues cada hoja trabaja un indicador diferente y es inviable hacer un merge entre las 3, dado que cada indicador es observado en un periodo de varios aÃ±os
 
 desig ="https://github.com/MilagrosBadillo/TrabajoFinalEAP2/raw/master/Poverty%20and%20GINI.xlsx"
 gini <- import(desig, sheet = "GINI")
@@ -30,9 +31,9 @@ names(headpov)=str_split(names(headpov)," ",simplify = T)[,1]
 gini[,c(1,2,4,28)]=NULL
 nacpov[,c(1,2,4,5,6,7,8,22)]=NULL
 headpov[,c(1,2,4,28)]=NULL
-#eliminamos los códigod de países porque aunque facilitarían el trabajo con otras bases de datos, no están presentes en las otras bases de datos que se usarán en el trabajo grupal
+#eliminamos los cÃ³digod de paÃ­ses porque aunque facilitarÃ­an el trabajo con otras bases de datos, no estÃ¡n presentes en las otras bases de datos que se usarÃ¡n en el trabajo grupal
 
-#eliminar filas vacías de abajo
+#eliminar filas vacÃ­as de abajo
 gini=gini[-c(26:30),]
 headpov=headpov[-c(26:30),]
 nacpov=nacpov[-c(26:30),]
@@ -59,7 +60,7 @@ headpov[,c(2:24)]=lapply(headpov[,c(2:24)],as.numeric)
 
 complete.cases(gini)
 
-#por ende, en adelante, se agregará na.rm = TRUE al realizar operaciones con la data
+#por ende, en adelante, se agregarÃ¡ na.rm = TRUE al realizar operaciones con la data
 
 mean(gini$`2002`, na.rm = TRUE)
 
